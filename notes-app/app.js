@@ -5,7 +5,7 @@ const notes = require('./notes')
 const log = console.log
 
 // Customize yargs version
-yargs.version('1.1.0')
+yargs.version('1.5.0')
 
 
 // Create add command
@@ -37,7 +37,7 @@ yargs.command({
     },
     // argüman girildikten sonra veriler ile beraber yapılacak olan işlemler. 
     // argv verisi fonksiyona import edilmezse argüman ile beraber girilen verilerin bir anlamı olmayacaktır.
-    handler: function(argv)
+    handler: (argv) =>
     {
         notes.addNote(argv.title, argv.body)
     },
@@ -55,7 +55,7 @@ yargs.command({
             type: 'string,'
         }
     },
-    handler: function(argv)
+    handler: (argv) =>
     {
         // notes.removeNote(argv.title)
         // log("The command titled ", argv.title, " has deleted.")
@@ -67,7 +67,7 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: 'Read a note',
-    handler: function()
+    handler: () =>
     {
         log('Read a note')
     },
@@ -77,7 +77,7 @@ yargs.command({
 yargs.command({
     command: 'list',
     describe: 'Lists notes',
-    handler: function()
+    handler: () =>
     {
         log('Listing notes')
     },
