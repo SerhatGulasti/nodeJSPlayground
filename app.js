@@ -47,9 +47,19 @@ yargs.command({
 yargs.command({
     command: 'remove',
     describe: 'Remove a note',
-    handler: function()
+    builder:{
+        title:
+        {
+            describe: "Note title",
+            demandOption: true,
+            type: 'string,'
+        }
+    },
+    handler: function(argv)
     {
-        log('Removing the note')
+        // notes.removeNote(argv.title)
+        // log("The command titled ", argv.title, " has deleted.")
+        notes.removeNote(argv.title)
     },
 })
 
@@ -72,7 +82,7 @@ yargs.command({
         log('Listing notes')
     },
 })
-// add, remove, read, list
+
 
 
 // bu fonksiyon yazılmaz ise argümanlar çalışmaz.
