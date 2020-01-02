@@ -1,5 +1,7 @@
 const fs = require('fs')
+const chalk = require('chalk')
 const log = console.log
+
 const getNotes = function()
 {
     return "This output created by notes.js"
@@ -35,7 +37,15 @@ const removeNote = function(title){
     const notesToKeep = notes.filter(function(note){
         return note.title !== title
     })
-    saveNotes(notesToKeep)
+    if(notes.length === notesToKeep.length)
+    {
+        log(chalk.black.bgRed("No note found!"))
+    }
+    else
+    {
+        log(chalk.black.bgGreen("Note removed!"))
+        saveNotes(notesToKeep)
+    }
     
 }
 
