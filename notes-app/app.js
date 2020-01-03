@@ -67,7 +67,7 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: 'Read a note',
-    handler: () =>
+    handler()
     {
         log('Read a note')
     },
@@ -79,7 +79,7 @@ yargs.command({
     describe: 'Lists notes',
     handler()
     {
-        log('Listing notes')
+        notes.listNotes()
     },
 })
 
