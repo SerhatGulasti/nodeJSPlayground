@@ -37,7 +37,7 @@ yargs.command({
     },
     // argüman girildikten sonra veriler ile beraber yapılacak olan işlemler. 
     // argv verisi fonksiyona import edilmezse argüman ile beraber girilen verilerin bir anlamı olmayacaktır.
-    handler: (argv) =>
+    handler(argv)
     {
         notes.addNote(argv.title, argv.body)
     },
@@ -55,7 +55,7 @@ yargs.command({
             type: 'string,'
         }
     },
-    handler: (argv) =>
+    handler(argv)
     {
         // notes.removeNote(argv.title)
         // log("The command titled ", argv.title, " has deleted.")
@@ -77,7 +77,7 @@ yargs.command({
 yargs.command({
     command: 'list',
     describe: 'Lists notes',
-    handler: () =>
+    handler()
     {
         log('Listing notes')
     },

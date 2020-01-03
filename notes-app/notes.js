@@ -2,7 +2,7 @@ const fs = require('fs')
 const chalk = require('chalk')
 const log = console.log
 
-const getNotes = function()
+const getNotes = () =>
 {
     return "This output created by notes.js"
 }
