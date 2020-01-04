@@ -60,6 +60,7 @@ yargs.command({
         // notes.removeNote(argv.title)
         // log("The command titled ", argv.title, " has deleted.")
         notes.removeNote(argv.title)
+        log("The command titled ", argv.title, " has deleted.")
     },
 })
 

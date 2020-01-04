@@ -11,6 +11,7 @@ const addNote = (title, body) =>
 {
     const notes = loadNotes()
     const duplicateNotes = notes.filter((note) => note.title === title)
+    const duplicateNote = notes.find((note) => note.title === title)
 
     if(duplicateNotes.length === 0){
         notes.push({
@@ -60,11 +61,9 @@ const loadNotes = () =>
 const listNotes = () =>
 {
     const notes = loadNotes()
-    log(chalk.bgRed("YOUR NOTES"))
-    const counter = 1
+    log(chalk.inverse("YOUR NOTES"))
     notes.forEach(note => {
         log(note.title)
-        
     });
     
 }
