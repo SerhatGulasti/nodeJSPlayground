@@ -68,9 +68,18 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: 'Read a note',
-    handler()
+    builder:
     {
-        log('Read a note')
+        title:
+        {
+            describe: "Title of your note",
+            demandOption: "true",
+            type: "string"
+        }
+    },
+    handler(argv)
+    {
+        notes.readNotes(argv.title)
     },
 })
 
@@ -78,9 +87,18 @@ yargs.command({
 yargs.command({
     command: 'list',
     describe: 'Lists notes',
-    handler()
+    builder:
     {
-        notes.listNotes()
+        ext:
+        {
+            describe: "Actives extender list mode",
+            type: 'boolean'
+        },
+
+    },
+    handler(argv)
+    {
+        notes.listNotes(argv.ext)
     },
 })
 

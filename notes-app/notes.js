@@ -2,27 +2,23 @@ const fs = require('fs')
 const chalk = require('chalk')
 const log = console.log
 
-const getNotes = () =>
-{
-    return "This output created by notes.js"
-}
-
 const addNote = (title, body) =>
 {
     const notes = loadNotes()
-    const duplicateNotes = notes.filter((note) => note.title === title)
     const duplicateNote = notes.find((note) => note.title === title)
-
-    if(duplicateNotes.length === 0){
-        notes.push({
-            title: title,
-            body: body,
-        })
-        saveNotes(notes)
-        log("New note added!")
-    }
+    if(title.length >= 51){chalk.red(log("Title length cannot be longer than 50!"))}
     else{
-        log('Note title taken!')
+        if(!duplicateNote){
+            notes.push({
+                title: title,
+                body: body,
+            })
+            saveNotes(notes)
+            log("New note added!")
+        }
+        else{
+            log('Note title taken!')
+        }
     }
 }
 
@@ -58,19 +54,50 @@ const loadNotes = () =>
     
 }
 
-const listNotes = () =>
+const listNotes = (ext) =>
 {
     const notes = loadNotes()
     log(chalk.inverse("YOUR NOTES"))
-    notes.forEach(note => {
-        log(note.title)
-    });
+    log("---------")
+    if(ext)
+    {
+        notes.forEach(note => {
+            log(chalk.bold(note.title))
+            if(note.body.length > 20)
+            {
+                log(chalk.keyword('orange')("->"), note.body.slice(0,20), "...")
+            }
+            else
+            {
+                log(chalk.keyword('orange')("-->"),note.body)
+            }
+            log("---------")
+        })
+    }
+    else{
+        notes.forEach(note => {
+            log(note.title)
+        });
+    }
     
 }
 
+const readNotes = (title) => 
+{
+    const notes = loadNotes()
+    const note = notes.find((note) => note.title.toLowerCase() === title.toLowerCase())
+    if(note){
+        log(chalk.inverse(note.title))
+        log(note.body)
+    }
+    else
+    {
+        chalk.red.inverse(log("Note not found"))
+    }
+}
 module.exports = {
-    getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
     listNotes: listNotes,
+    readNotes: readNotes,
 }
