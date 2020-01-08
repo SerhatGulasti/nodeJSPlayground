@@ -21,7 +21,7 @@ yargs.command({
         // argüman ile beraber gelecek diğer parametreler bu şekilde tanımlanır.
         title: 
         {
-            // --help yazıldığında gelecek açıklama
+            // --help yazıldığında  gelecek açıklama
             describe: 'Note title',
             // argüman girişi zorunlu mu. true ise zorunlu, false ise değil.
             demandOption: true,

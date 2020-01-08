@@ -6,12 +6,15 @@ const addNote = (title, body) =>
 {
     const notes = loadNotes()
     const duplicateNote = notes.find((note) => note.title === title)
+
+    debugger
     if(title.length >= 51){chalk.red(log("Title length cannot be longer than 50!"))}
     else{
         if(!duplicateNote){
             notes.push({
                 title: title,
                 body: body,
+                
             })
             saveNotes(notes)
             log("New note added!")
@@ -29,7 +32,7 @@ const saveNotes = (notes) => {
 
 const removeNote = (title) => {
     const notes = loadNotes()
-    const notesToKeep = notes.filter((note) => note.title !== title)
+    const notesToKeep = notes.filter((note) => note.title.toLowerCase() !== title.toLowerCase())
     if(notes.length === notesToKeep.length)
     {
         log(chalk.black.bgRed("No note found!"))
@@ -87,8 +90,8 @@ const readNotes = (title) =>
     const notes = loadNotes()
     const note = notes.find((note) => note.title.toLowerCase() === title.toLowerCase())
     if(note){
-        log(chalk.inverse(note.title))
-        log(note.body)
+        log(chalk.bold("Title:"), note.title)
+        log(chalk.bold("Body:"), note.body)
     }
     else
     {
